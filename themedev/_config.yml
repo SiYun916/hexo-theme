@@ -1,48 +1,74 @@
-# Hexo Configuration
-## Docs: https://hexo.io/docs/configuration.html
-## Source: https://github.com/hexojs/hexo/
+# 以一个#开头的是说明，两个#开头的是不明意思的说明
 
-# Site
-title: Hexo
+# title 网站标题 
+title: ROSE
+# subtitle 网站副标题
 subtitle: ''
+# description 网站描述
 description: ''
+# keywords 网站的关键词
 keywords:
-author: John Doe
+# author 作者
+author: Si Yun
 language: en
-timezone: ''
+# timezone 网站时区
+timezone: 'Asia/Shanghai'
 
-# URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+## url 网址，以http://或者https://开头
+## root 网站根目录
+root: /
+# permalink 文章的永久链接格式；这里的示例可以去hexo文档中看（https://hexo.io/zh-cn/docs/permalinks）；
 permalink: :year/:month/:day/:title/
+# 永久链接中各部分的默认值，如果按默认的:year/:month/:day/:title/，我们可以指定2023 10 21 helloworld
+# 没必要修改permalink 和 permalink_defaults的值
 permalink_defaults:
+# 美化url，忽略掉.html等
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
   trailing_html: true # Set to false to remove trailing '.html' from permalinks
 
-# Directory
+# 资源文件夹，写的md文件就在其中的_post中
 source_dir: source
+# 公共文件夹，hexo g生成的站点文件就在这，这里的东西是要部署到githubpage上去的，并且public/就是网站的根目录
 public_dir: public
+# 标签文件夹
 tag_dir: tags
+# 归档文件夹
 archive_dir: archives
+# 分类文件夹
 category_dir: categories
+## Include code文件夹，source_dir下的子目录。我猜应该是网站渲染需要引入的、从网上下载的css、js文件等
 code_dir: downloads/code
+## 国际化文件夹，应该也用不到
 i18n_dir: :lang
+# 跳过指定文件的渲染，匹配到的文件将不做改动直接复制到public目录中，可以指定文件夹或者是特定文件
 skip_render:
 
-# Writing
+# 新文章的文件名，这个默认值的意思不太清楚，在实际hexo new的时候好像必须指定文件名这个参数
 new_post_name: :title.md # File name of new posts
+# 预设布局，hexo new的第一个参数，可选的，可以没有。如果用ejs开发，默认的模板是调用post.ejs
 default_layout: post
+## 把标题转换为 title case 不清楚什么意思，大概率也用不太到
 titlecase: false # Transform title into titlecase
+# 在新标签中打开链接
+# enable参数决定是否在新标签中打开链接。  field是起作用的区域，如果是site就是对整个网站生效，post就是仅对文章生效
+# exclude 需要排除的域名，应该是这些域名的网站在本页直接打开，不打开新标签，估计也用不到
 external_link:
   enable: true # Open external links in new tab
   field: site # Apply to the whole site
   exclude: ''
+# 把文件名转化成大写（2）或者是小写（1）。如hexo new test会生成一个TEST.md
 filename_case: 0
+# 是否显示草稿
 render_drafts: false
+## 启动Asset文件夹 具体看文档吧，还不太懂（https://hexo.io/zh-cn/docs/asset-folders） 
 post_asset_folder: false
+# 把链接改为与根目录相对的地址
 relative_link: false
+## 显示未来的文章，o.O?
 future: true
+## 代码块设置 其中具体的设置还是需要去文档中看（https://hexo.io/zh-cn/docs/syntax-highlight#Highlight-js）
 highlight:
   enable: true
   line_number: true
@@ -60,46 +86,63 @@ prismjs:
 # path: Root path for your blogs index page. (default = '')
 # per_page: Posts displayed per page. (0 = disable pagination)
 # order_by: Posts order. (Order by date descending by default)
+# 吐了，官方中文文档不更新的，这个应该是一个插件，具体描述在（https://github.com/hexojs/hexo-generator-index）
+## 不太懂这个参数是干嘛的，Generate an archive of posts，因该不是分页？
+# 下面的path参数指的是root path for your blog's index page。应该是public_dir？
+# per_page是每页显示的文章量
+# order_by 文章显示的顺序，默认是按照时间显示。理论上不用变
+## pagination_dir分页目录，这里没写，URL format。也不懂QAQ
 index_generator:
   path: ''
   per_page: 10
   order_by: -date
 
-# Category & Tag
+# Category & Tag 分类和标签
+# 默认分类
 default_category: uncategorized
+# 分类别名
 category_map:
+# 标签别名
 tag_map:
 
 # Metadata elements
+## 值为 false 时 Hexo 不会在头部插入该标签  不懂T.T
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
 meta_generator: true
 
-# Date / Time format
+# Date / Time format 日期时间格式，估计同步太到
 ## Hexo uses Moment.js to parse and display date
 ## You can customize the date format as defined in
 ## http://momentjs.com/docs/#/displaying/format/
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
 ## updated_option supports 'mtime', 'date', 'empty'
+# 当 Front Matter 中没有指定 updated 时 updated 的取值。应该是文章更新时间？
 updated_option: 'mtime'
 
-# Pagination
+# Pagination 分页
 ## Set per_page to 0 to disable pagination
+# per_page是每页显示的文章量
 per_page: 10
 pagination_dir: page
 
 # Include / Exclude file(s)
+# Hexo默认会不包括source/下的文件和文件夹（包括名称以下划线和 . 开头的文件和文件夹，Hexo的 _posts和_data等目录除外）。通过设置此字段将使Hexo处理他们并将它们复制到source目录下。
 ## include:/exclude: options only apply to the 'source/' folder
-include:
-exclude:
+include: 
+# Hexo 不包括 source/ 下的这些文件和目录
+exclude: 
+# Hexo 会忽略整个 Hexo 项目下的这些文件夹或文件
 ignore:
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+# 主题
+theme: Rose
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
+# 部署
 deploy:
   type: ''

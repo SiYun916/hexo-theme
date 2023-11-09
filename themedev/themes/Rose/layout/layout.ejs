@@ -11,16 +11,11 @@
 </head>
 <body>
     <div id="main">
-        <!--侧边栏-->
-        <aside id="leftSideBar">
-            <%- include('aside.ejs') %>
-        </aside>
-
-        <!--导航栏-->
-        <nav>
-            <%- include('nav.ejs') %>
-        </nav>
-
+        <!--
+            header部分模仿苍彼官网做
+        -->
+        <%- include('_partial/header.ejs') %>
+        
         <!--正文-->
         <div id="content">
             <%- body%>
